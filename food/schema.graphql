@@ -1,0 +1,12 @@
+scalar Date
+
+type Food {
+    id: Int
+    name: String!
+    days: [Day]
+}
+
+type Day {
+    id: Int
+    date: Date!
+}

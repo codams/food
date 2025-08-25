@@ -1,0 +1,11 @@
+type Query {
+    foods: [Food!]! 
+    days: [Day]
+    food(name: String, id: Int): Food
+    day(date: Date, id: Int): Day
+}
+type Mutation {
+    createFood(name: String!): Food!
+    createDay(date:Date!): Day!
+    updateFoodDate(date: Date!): Food!
+}
