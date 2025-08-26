@@ -7,5 +7,5 @@ type Query {
 type Mutation {
     createFood(name: String!): Food!
     createDay(date:Date!): Day!
-    updateFoodDate(date: Date!): Food!
+    updateFoodDate(id: Int!, date: Date!): Food
 }

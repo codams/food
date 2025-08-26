@@ -43,16 +43,13 @@ def create_day(*_, date):
     return {"date": day.date}
 
 @convert_kwargs_to_snake_case
-def update_food_date(*_,id, date):
+def update_food_date(*_, id, date):
     if not id:
         return HttpResponseBadRequest("Id needed")
-    food = Food.objects.get(id)
+    food = Food.objects.get(id=id)
     if not food:
         return Http404("Food not found")
-    day = Day.objects.get(date=date)
-    if not day:
-        day = Day.objects.create(date=date)
-        day.save()
+    day = Day.objects.get_or_create(date=date)
     food.days.add(day)
     food.save()
     return food
