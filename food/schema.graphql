@@ -1,12 +1,13 @@
 scalar Date
 
 type Food {
-    id: Int
-    name: String!
-    days: [Day]
+  id: Int
+  name: String!
+  days: [Day]
+  color: String!
 }
 
 type Day {
-    id: Int
-    date: Date!
+  id: Int
+  date: Date!
 }

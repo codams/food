@@ -5,7 +5,7 @@ from django.http import HttpResponseBadRequest, Http404
 @convert_kwargs_to_snake_case
 def list_foods(*_):
     return [
-        {"name": food.name, "days": food.days.all()}
+        {"name": food.name, "days": food.days.all(), "color": food.color, "id":food.id}
         for food in Food.objects.all()
     ]
     
@@ -17,8 +17,8 @@ def list_days(*_):
     ]
 
 @convert_kwargs_to_snake_case
-def create_food(*_, name):
-    food = Food.objects.create(name=name)
+def create_food(*_, name, color):
+    food = Food.objects.create(name=name, color=color)
     return {"name": food.name}
 
 @convert_kwargs_to_snake_case
@@ -49,10 +49,13 @@ def update_food_date(*_, id, date):
     food = Food.objects.get(id=id)
     if not food:
         return Http404("Food not found")
-    day = Day.objects.get_or_create(date=date)
-    food.days.add(day)
+    
+    day, created = Day.objects.get_or_create(date=date)
+    
+    food.days.add(day.id)
     food.save()
     return food
+
     
     
     

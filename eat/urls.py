@@ -19,7 +19,6 @@ from django.urls import path, include
 from ariadne_django.views import GraphQLView
 from .graphql_config import schema
 
-
 urlpatterns = [
     path('food/', include("food.urls")),
     path('admin/', admin.site.urls),
